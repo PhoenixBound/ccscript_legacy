@@ -6,7 +6,9 @@
 /// "[fc fd fe ff]"
 /// "[fc fd fe ff]"
 /// "[00 01 02 03]"
-/// "[31 41 59]"
+/// "[31 41 59 00]"
+/// "[00 00 26 FC FD FE FF 00]"
+/// "[01 02 03 31 41 59 00 00]"
 
 // The hex file should have the following data:
 // "[00 01 02 03 31 41 59 26 FC FD FE FF]"
@@ -15,3 +17,8 @@ insertbin       "insertbinexpr_data.bin"
 insertbin [0x8] "insertbinexpr_data.bin"
 insertbin [0,4] "insertbinexpr_data.bin"
 insertbin [4,3] "insertbinexpr_data.bin"
+
+// Unaligned insertbins, inside of unaligned and overlong ROM[] statements
+ROM[0xC00020] = insertbin [1, 6] "insertbinexpr_data.bin"
+ROMTBL[0xC00018,1,2] = insertbin [7] "insertbinexpr_data.bin"
+

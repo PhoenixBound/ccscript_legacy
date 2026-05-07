@@ -489,6 +489,7 @@ void RomWrite::Do(SymbolTable* scope, EvalContext& original_context)
 	// Create a new context for the subexpressions
 	EvalContext context;
 	context.module = original_context.module;
+	context.file = original_context.file;
 
 	RomAccess* access = new RomAccess();
 
