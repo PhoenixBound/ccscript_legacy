@@ -40,7 +40,27 @@ Program* Parser::Parse()
 Expression* Parser::ParseExpression()
 {
 	getsym();
-	return expression();
+	Expression* e = expression();
+	
+	// Add a warning (error?) for all trailing tokens, because we only wanted to parse
+	// a single expression
+	if(sym != finished) {
+		stringstream ss;
+		string empty_string{};
+
+		while(sym != finished) {
+			ss << "ignoring unexpected symbol '" << last.ToString() << "' after expression";
+			Warning(ss.str(), line);
+			
+			// Reset error text
+			ss.str(empty_string);
+			
+			// Advance to the next token
+			getsym();
+		}
+	}
+
+	return e;
 }
 
 
