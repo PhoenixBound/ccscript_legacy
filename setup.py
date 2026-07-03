@@ -10,8 +10,11 @@ source_files = [os.path.join("src", x) for x in os.listdir("src") if x.lower().e
 extra_compile_args = []
 extra_link_args = []
 
-if platform.system() == "Linux" or platform.system() == "Darwin":
-    extra_compile_args = ["-std=c++17"]
+if platform.python_compiler().startswith('MSC '):
+    extra_compile_args.append("/std:c++17")
+    extra_compile_args.append("/D_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING")
+else:
+    extra_compile_args.append("-std=c++17")
 
 setup(name="ccscript",
     version="1.500",
