@@ -11,7 +11,7 @@ extra_compile_args = []
 extra_link_args = []
 
 if platform.system() == "Linux" or platform.system() == "Darwin":
-    extra_compile_args = ["-std=c++11"]
+    extra_compile_args = ["-std=c++17"]
 
 setup(name="ccscript",
     version="1.500",

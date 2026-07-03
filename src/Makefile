@@ -1,7 +1,7 @@
 #
 # Crappy makefile for ccscript compiler (ccc)
 #
-CXXFLAGS = -c -Wall -O3 -std=c++11
+CXXFLAGS = -c -Wall -O3 -std=c++17
 OBJDIR = obj
 BINDIR = bin
 OUTFILE = ccc
@@ -92,17 +92,17 @@ $(OBJDIR)/%.o: %.cpp
 # Object dependencies
 #
 $(OBJDIR)/anchor.o:       anchor.h
-$(OBJDIR)/ast.o:          ast.h err.h value.h anchor.h symboltable.h string.h bytechunk.h module.h stringparser.h exception.h compiler.h util.h fs.h filesystem/filesystem_mini.h
+$(OBJDIR)/ast.o:          ast.h err.h value.h anchor.h symboltable.h string.h bytechunk.h module.h stringparser.h exception.h compiler.h util.h fs.h
 $(OBJDIR)/bytechunk.o:    bytechunk.h anchor.h ast.h err.h value.h exception.h
-$(OBJDIR)/ccc.o:          ccc.h compiler.h module.h err.h util.h fs.h filesystem/filesystem_mini.h
-$(OBJDIR)/compiler.o:     compiler.h module.h err.h anchor.h ast.h value.h bytechunk.h symboltable.h exception.h util.h fs.h filesystem/filesystem_mini.h
+$(OBJDIR)/ccc.o:          ccc.h compiler.h module.h err.h util.h fs.h
+$(OBJDIR)/compiler.o:     compiler.h module.h err.h anchor.h ast.h value.h bytechunk.h symboltable.h exception.h util.h fs.h
 $(OBJDIR)/lexer.o:        lexer.h err.h
 $(OBJDIR)/module.o:       module.h err.h compiler.h ast.h value.h lexer.h parser.h symboltable.h bytechunk.h exception.h util.h
 $(OBJDIR)/parser.o:       parser.h lexer.h err.h ast.h value.h
 $(OBJDIR)/stringparser.o: stringparser.h err.h value.h ast.h parser.h lexer.h module.h bytechunk.h
 $(OBJDIR)/symboltable.o:  symboltable.h anchor.h ast.h err.h value.h
 $(OBJDIR)/table.o:        table.h
-$(OBJDIR)/util.o:         util.h fs.h filesystem/filesystem_mini.h
+$(OBJDIR)/util.o:         util.h fs.h
 $(OBJDIR)/value.o:        value.h table.h function.h string.h bytechunk.h
 
 
