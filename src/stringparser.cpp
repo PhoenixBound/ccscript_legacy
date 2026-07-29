@@ -21,6 +21,11 @@ void StringParser::Warning(const string &msg, int line_unused, int col)
 	error->Warning(msg + " inside string", this->line, col);
 }
 
+void StringParser::Deprecated(const string &msg, const string &suggestion, int line_unused, int col)
+{
+	error->Warning(msg + " inside string, which may stop working in the future; " + suggestion, this->line, col);
+}
+
 int StringParser::acceptbyte()
 {
 	string s = "";
@@ -92,6 +97,16 @@ Value StringParser::Evaluate(SymbolTable* scope, EvalContext& context)
 				docodes = true;
 			}
 			else {
+				if(current == ']') {
+					Deprecated(string("lone \"]\" character"),
+					           string("if this was intentional, please replace it with [8D]"),
+					           0,0);
+				}
+				else if(current == '}') {
+					Deprecated(string("lone \"}\" character"),
+					           string("if this was intentional, please replace it with [AD]"),
+					           0,0);
+				}
 				// Default:
 				output->Char(current);
 			}

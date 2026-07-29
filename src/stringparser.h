@@ -36,6 +36,8 @@ public:
 	void Warning(const std::string& msg, int line, int col);
 
 private:
+	// One-off warning method because `Warning` adds " inside string" to the end of the string every time
+	void Deprecated(const std::string& msg, const std::string& suggestion, int line, int col);
 	int acceptbyte();
 	bool expect(char c);
 	void next();
